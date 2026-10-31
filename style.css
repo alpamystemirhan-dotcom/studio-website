@@ -19,6 +19,7 @@
   --ok: #3dff9a;
   --bad: #ff5c7a;
   --glow: 0 0 1.25rem rgba(25, 240, 255, 0.45);
+  --hero-img: url("images/hero-mobile.webp");
   --radius: 1.5rem;
   --radius-sm: 1rem;
   --gap: 1rem;
@@ -233,11 +234,12 @@ ul {
   flex-direction: column;
   justify-content: flex-end; /* CTA lands in the thumb zone on phones */
   gap: 1rem;
-  min-height: 85vh;
-  padding: 2rem var(--pad) 2.5rem;
+  aspect-ratio: 1 / 2;
+  min-height: 40rem;
+  padding: 2rem var(--pad) 2rem;
   background:
     linear-gradient(to top, var(--bg) 0%, rgba(10, 10, 18, 0.55) 60%, rgba(10, 10, 18, 0.2) 100%),
-    url("images/hero.webp") center / cover no-repeat;
+    var(--hero-img) center / cover no-repeat;
 }
 
 .hero h1 {
@@ -449,11 +451,15 @@ main > section:not(.hero) {
 :root:has(#theme-toggle:checked) .hero {
   background:
     linear-gradient(to top, var(--bg) 0%, rgba(245, 245, 251, 0.75) 60%, rgba(245, 245, 251, 0.45) 100%),
-    url("images/hero.webp") center / cover no-repeat;
+    var(--hero-img) center / cover no-repeat;
 }
 
 /* ===== Desktop: 1024px and up ===== */
 @media (min-width: 1024px) {
+  :root {
+    --hero-img: url("images/hero.webp");
+  }
+
   .site-header {
     display: flex;
     gap: 2rem;
@@ -487,6 +493,7 @@ main > section:not(.hero) {
   }
 
   .hero {
+    aspect-ratio: auto;
     min-height: 90vh;
     justify-content: center;
   }
