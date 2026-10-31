@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recording and Podcast Studio — book studio time</title>
+  <meta name="description" content="Recording and podcast studio: technical rider, hourly prices and online booking.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="#top" aria-label="Studio home">
+      <img src="images/logo.svg" alt="" width="40" height="40">
+      <span>Wave Room</span>
+    </a>
+    <a class="phone" href="tel:+77000000000">+7 700 000 00 00</a>
+
+    <input type="checkbox" id="menu-toggle" class="visually-hidden" aria-label="Open menu">
+    <label for="menu-toggle" class="burger" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </label>
+
+    <nav class="main-nav" aria-label="Main">
+      <ul>
+        <li><a href="#equipment">Equipment</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#prices">Prices</a></li>
+        <li><a href="#works">Our Works</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">Crystal Clear Sound for Your Music and Podcasts</h1>
+      <p>Treated acoustic room, tube microphones and a sound engineer who knows your genre.</p>
+      <a class="button" href="#booking">Book Studio Time</a>
+    </section>
+
+    <section id="equipment" class="equipment" aria-labelledby="equipment-title">
+      <h2 id="equipment-title">Technical rider</h2>
+      <ul class="rider">
+        <li>
+          <article>
+            <h3>Microphones</h3>
+            <p>Large-diaphragm condenser, dynamic broadcast mic, pop filters and shock mounts.</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h3>Monitoring</h3>
+            <p>Near-field studio monitors, closed headphones for every performer.</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h3>Software and interface</h3>
+            <p>Low-latency audio interface, DAW with a full plugin set for mixing.</p>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+    <section id="services" class="services" aria-labelledby="services-title">
+      <h2 id="services-title">Services and prices</h2>
+      <ul class="cards" id="prices">
+        <li>
+          <article class="card">
+            <h3>Vocal Recording</h3>
+            <p>Recording with an engineer, comping and basic vocal tuning.</p>
+            <p class="price"><strong>8 000 ₸</strong> per hour</p>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <h3>Track Mixing</h3>
+            <p>Balance, EQ, compression and spatial effects for a finished track.</p>
+            <p class="price"><strong>12 000 ₸</strong> per hour</p>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <h3>Turnkey Podcast</h3>
+            <p>Recording, editing, noise cleanup and export of every episode.</p>
+            <p class="price"><strong>10 000 ₸</strong> per hour</p>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+    <section id="booking" class="booking" aria-labelledby="booking-title">
+      <h2 id="booking-title">Book studio time</h2>
+      <form action="#" method="post">
+        <label>
+          Date
+          <input type="date" name="date" required>
+        </label>
+
+        <label>
+          Session duration
+          <select name="duration" required>
+            <option value="">Choose hours</option>
+            <option value="1">1 hour</option>
+            <option value="2">2 hours</option>
+            <option value="3">3 hours</option>
+            <option value="4">4 hours</option>
+            <option value="8">Full day (8 hours)</option>
+          </select>
+        </label>
+
+        <label>
+          Name
+          <input type="text" name="name" minlength="2" autocomplete="name" placeholder="Your name" required>
+        </label>
+
+        <label>
+          Phone
+          <input type="tel" name="phone" autocomplete="tel" placeholder="+7 700 000 00 00" pattern="[0-9+\-\s()]{10,18}" required>
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" autocomplete="email" placeholder="you@example.com" required>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" name="engineer" value="yes">
+          Hire a sound engineer for the session
+        </label>
+
+        <button type="submit" class="button">Send booking request</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" id="works">
+    <nav aria-label="Streaming releases">
+      <h2>Our Works</h2>
+      <ul>
+        <li><a href="#">Spotify releases</a></li>
+        <li><a href="#">Apple Music</a></li>
+        <li><a href="#">YouTube Music</a></li>
+      </ul>
+    </nav>
+
+    <nav aria-label="Social networks">
+      <h2>Follow us</h2>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Telegram</a></li>
+        <li><a href="#">TikTok</a></li>
+      </ul>
+    </nav>
+
+    <section class="legal" aria-label="Legal information">
+      <h2>Legal</h2>
+      <p>© 2026 Wave Room Studio. All rights reserved.</p>
+      <p><a href="#">Privacy policy</a> · <a href="#">Booking terms</a></p>
+    </section>
+
+    <section class="theme" aria-label="Theme">
+      <input type="checkbox" id="theme-toggle" class="visually-hidden">
+      <label for="theme-toggle" class="theme-switch">Switch to light theme</label>
+    </section>
+  </footer>
+
+</body>
+</html>
