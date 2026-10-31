@@ -1,0 +1,541 @@
+/* ===== Reset ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== Theme tokens: dark neon by default ===== */
+:root {
+  --bg: #0a0a12;
+  --surface: #15152b;
+  --surface-2: #1d1d3b;
+  --text: #f1f1ff;
+  --muted: #b4b4d6;
+  --accent: #19f0ff;
+  --accent-2: #ff3cc7;
+  --on-accent: #0a0a12;
+  --line: #2c2c5a;
+  --ok: #3dff9a;
+  --bad: #ff5c7a;
+  --glow: 0 0 1.25rem rgba(25, 240, 255, 0.45);
+  --radius: 1.5rem;
+  --radius-sm: 1rem;
+  --gap: 1rem;
+  --pad: clamp(1rem, 5vw, 4rem);
+  --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Unbounded", "Manrope", system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+/* System theme inversion: footer checkbox switches to light */
+:root:has(#theme-toggle:checked) {
+  --bg: #f5f5fb;
+  --surface: #ffffff;
+  --surface-2: #ececf8;
+  --text: #14142a;
+  --muted: #4a4a6e;
+  --accent: #5b21b6;
+  --accent-2: #b0008f;
+  --on-accent: #ffffff;
+  --line: #c9c9e3;
+  --ok: #0a7a3d;
+  --bad: #c0173a;
+  --glow: 0 0 1rem rgba(91, 33, 182, 0.25);
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--accent);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+ul {
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 0.1875rem solid var(--accent-2);
+  outline-offset: 0.25rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ===== Header / Nav (mobile first) ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 0.75rem;
+  padding: 0.75rem var(--pad);
+  background: var(--bg);
+  border-bottom: 0.0625rem solid var(--line);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.logo img {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.phone {
+  justify-self: end;
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: var(--muted);
+}
+
+.burger {
+  display: grid;
+  gap: 0.3rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0.75rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 0.0625rem solid var(--line);
+  cursor: pointer;
+}
+
+.burger span {
+  display: block;
+  height: 0.1875rem;
+  border-radius: 1rem;
+  background: var(--accent);
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+#menu-toggle:focus-visible ~ .burger {
+  outline: 0.1875rem solid var(--accent-2);
+  outline-offset: 0.25rem;
+}
+
+#menu-toggle:checked ~ .burger span:nth-child(1) {
+  transform: translateY(0.4875rem) rotate(45deg);
+}
+
+#menu-toggle:checked ~ .burger span:nth-child(2) {
+  opacity: 0;
+}
+
+#menu-toggle:checked ~ .burger span:nth-child(3) {
+  transform: translateY(-0.4875rem) rotate(-45deg);
+}
+
+.main-nav {
+  display: none;
+  grid-column: 1 / -1;
+  padding-top: 0.75rem;
+}
+
+#menu-toggle:checked ~ .main-nav {
+  display: block;
+}
+
+.main-nav ul {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.main-nav a {
+  display: block;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.main-nav a:hover {
+  box-shadow: var(--glow);
+  color: var(--accent);
+}
+
+/* ===== Buttons ===== */
+.button {
+  display: inline-block;
+  padding: 1rem 1.75rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--on-accent);
+  font: inherit;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--glow);
+  transition: transform 0.15s;
+}
+
+.button:hover {
+  transform: translateY(-0.125rem);
+}
+
+/* ===== Hero ===== */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* CTA lands in the thumb zone on phones */
+  gap: 1rem;
+  min-height: 85vh;
+  padding: 2rem var(--pad) 2.5rem;
+  background:
+    linear-gradient(to top, var(--bg) 0%, rgba(10, 10, 18, 0.55) 60%, rgba(10, 10, 18, 0.2) 100%),
+    url("images/hero.webp") center / cover no-repeat;
+}
+
+.hero h1 {
+  font-size: clamp(1.75rem, 8vw, 3.5rem);
+}
+
+.hero p {
+  max-width: 34rem;
+  color: var(--muted);
+}
+
+.hero .button {
+  align-self: stretch;
+}
+
+/* ===== Shared section spacing ===== */
+main > section:not(.hero) {
+  padding: 3rem var(--pad);
+}
+
+/* ===== Equipment ===== */
+.rider {
+  display: grid;
+  gap: var(--gap);
+}
+
+.rider article {
+  height: 100%;
+  padding: 1.25rem;
+  border-left: 0.25rem solid var(--accent-2);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+
+.rider p {
+  color: var(--muted);
+}
+
+/* ===== Grid section: service cards ===== */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr; /* single column on mobile */
+  gap: var(--gap);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 1.5rem;
+  border: 0.0625rem solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.card p:not(.price) {
+  color: var(--muted);
+  flex: 1;
+}
+
+.price {
+  font-size: 0.95rem;
+}
+
+.price strong {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+
+/* ===== Booking form ===== */
+.booking {
+  background: var(--surface);
+}
+
+.booking form {
+  display: grid;
+  gap: var(--gap);
+  max-width: 40rem;
+}
+
+.booking label {
+  display: grid;
+  gap: 0.4rem;
+  font-weight: 600;
+}
+
+.booking input,
+.booking select {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.75rem 1rem;
+  border: 0.125rem solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+
+.booking input::placeholder {
+  color: var(--muted);
+}
+
+/* Pure CSS validation feedback */
+.booking input:user-valid,
+.booking select:user-valid {
+  border-color: var(--ok);
+}
+
+.booking input:user-invalid,
+.booking select:user-invalid {
+  border-color: var(--bad);
+  box-shadow: 0 0 0.75rem var(--bad);
+}
+
+.booking input:required + .hint,
+.booking label:has(:required) {
+  position: relative;
+}
+
+.booking label:has(:required)::after {
+  content: "Required";
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.booking label:has(:user-invalid)::after {
+  content: "Check this field";
+  color: var(--bad);
+}
+
+.booking label:has(:user-valid)::after {
+  content: "Looks good";
+  color: var(--ok);
+}
+
+.booking .check {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 400;
+}
+
+.booking .check::after {
+  content: none;
+}
+
+.booking .check input {
+  width: 1.5rem;
+  min-height: 1.5rem;
+  accent-color: var(--accent);
+}
+
+/* ===== Footer ===== */
+.site-footer {
+  display: grid;
+  gap: 2rem;
+  padding: 3rem var(--pad) 2rem;
+  border-top: 0.0625rem solid var(--accent-2);
+  background: var(--bg);
+}
+
+.site-footer h2 {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.site-footer ul {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.site-footer p {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.theme-switch {
+  display: inline-block;
+  padding: 0.85rem 1.25rem;
+  border: 0.125rem solid var(--accent);
+  border-radius: var(--radius);
+  color: var(--accent);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.theme-switch:hover {
+  box-shadow: var(--glow);
+}
+
+#theme-toggle:focus-visible + .theme-switch {
+  outline: 0.1875rem solid var(--accent-2);
+  outline-offset: 0.25rem;
+}
+
+:root:has(#theme-toggle:checked) .theme-switch {
+  font-size: 0;
+}
+
+:root:has(#theme-toggle:checked) .theme-switch::after {
+  content: "Switch to dark neon theme";
+  font-size: 1rem;
+}
+
+/* ===== Light theme: soften the hero overlay ===== */
+:root:has(#theme-toggle:checked) .hero {
+  background:
+    linear-gradient(to top, var(--bg) 0%, rgba(245, 245, 251, 0.75) 60%, rgba(245, 245, 251, 0.45) 100%),
+    url("images/hero.webp") center / cover no-repeat;
+}
+
+/* ===== Desktop: 1024px and up ===== */
+@media (min-width: 1024px) {
+  .site-header {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .phone {
+    margin-left: auto;
+    order: 3;
+    font-size: 1rem;
+  }
+
+  .burger,
+  #menu-toggle {
+    display: none;
+  }
+
+  .main-nav {
+    display: block;
+    order: 2;
+    padding-top: 0;
+  }
+
+  .main-nav ul {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .main-nav a {
+    padding: 0.6rem 1rem;
+    background: transparent;
+  }
+
+  .hero {
+    min-height: 90vh;
+    justify-content: center;
+  }
+
+  .hero h1,
+  .hero p {
+    max-width: 44rem;
+  }
+
+  .hero .button {
+    align-self: flex-start;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .rider {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .booking form {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 54rem;
+    column-gap: 2rem;
+  }
+
+  .booking .check,
+  .booking .button {
+    grid-column: 1 / -1;
+  }
+
+  .booking .button {
+    justify-self: start;
+  }
+
+  .site-footer {
+    grid-template-columns: repeat(4, 1fr);
+    align-items: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
